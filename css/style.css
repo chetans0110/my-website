@@ -1,0 +1,221 @@
+body {
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  text-align: top;
+  padding: 20px;
+}
+
+.page-heading {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  color: rgb(58, 255, 150);
+}
+
+button {
+  margin: 10px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-content {
+  margin: 8% auto;
+  padding: 20px;
+  border-radius: 20px;
+  width: 60%;
+  max-width: 500px;
+  text-align: left;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 90%;
+  object-fit: contain;
+  z-index: -1; /* stay behind everything */
+  filter: brightness(70%); /* darkens video so text/buttons pop */
+}
+
+.content {
+  position: fixed;
+  z-index: 1;
+  color: rgb(65, 30, 30);
+  text-align: left;
+}
+
+
+#mute-btn {
+  position: static;       /* stays on screen */
+  bottom: 20px;          /* distance from bottom */
+  right: 20px;           /* distance from right */
+  background: none;
+  color: none;
+  font-size: 15px;
+  cursor: default;
+}
+
+
+#mute-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* hover effect */
+#mute-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+}
+
+
+#mute-btn::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  animation: pulse 2s;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.7); opacity: 0; }
+  70% { transform: scale(1.2); opacity: 0; }
+  100% { transform: scale(0.7); opacity: 0; }
+}
+
+
+.popup-btn {
+  padding: 12px 24px;
+  margin: 10px;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px); /* frosted glass effect */
+}
+
+.popup-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+
+/* Circular icon-only theme button (like your mute button) */
+.circle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 75px;               /* change to left:20px if you prefer left corner */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 3000;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  transition: transform .12s ease, background .25s ease;
+  overflow: hidden;
+}
+
+/* small press feedback */
+.circle-btn:active { transform: scale(.96); }
+
+/* the two emoji stacked; we'll animate translateY + opacity */
+.circle-btn .emoji {
+  position: absolute;
+  transition: transform .32s cubic-bezier(.2,.9,.2,1), opacity .28s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* default (light mode): show sun, hide moon slightly down */
+.circle-btn .emoji.sun { transform: translateY(0); opacity: 1; }
+.circle-btn .emoji.moon { transform: translateY(10px); opacity: 0; }
+
+/* dark mode state: invert background and swap icons */
+body.dark .circle-btn {
+  background: rgba(255,255,255,0.12);
+  color: #ffd;
+}
+
+body.dark .circle-btn .emoji.sun { transform: translateY(-10px); opacity: 0; }
+body.dark .circle-btn .emoji.moon { transform: translateY(0); opacity: 1; }
+
+/* optional: slightly larger on hover for affordance */
+.circle-btn:hover { transform: translateY(-3px) scale(1.02); }
+
+/* Default (light mode) */
+body {
+  background: #f5f5f5;
+  color: #111;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #111;
+  color: #f5f5f5;
+}
+
+/* Example: popups in dark mode */
+body.dark .popup-content {
+  background: #222;
+  color: #eee;
+}
+
+/* Example: buttons in dark mode */
+body.dark .popup-btn {
+  background: #444;
+  color: #fff;
+  border: 1px solid #666;
+}
