@@ -58,7 +58,7 @@ button {
   min-height: 90%;
   object-fit: contain;
   z-index: -1; /* stay behind everything */
-  filter: brightness(70%); /* darkens video so text/buttons pop */
+  filter: brightness(60%); /* darkens video so text/buttons pop */
 }
 
 .content {
@@ -220,4 +220,5 @@ body.dark .popup-btn {
   color: #fff;
   border: 1px solid #666;
 }
+
 
